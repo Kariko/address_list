@@ -1,0 +1,64 @@
+﻿<Page
+    x:Class="Mid_Project.ContactsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Mid_Project"
+    xmlns:md="using:Mid_Project.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Name="appBarButton" Icon="Add" Label="Add" Click="AddButton"/>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid x:Name="All" BorderBrush="{ThemeResource AppBarBackgroundThemeBrush}">
+        <Grid.Background>
+                <ImageBrush ImageSource="Assets/background3.jpg" Opacity="1" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+            <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="textBlock" Grid.Row="0" Text="联 系 人" Foreground="#FFFFE0" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}"/>
+
+        <Grid Grid.Row="1">
+            <AutoSuggestBox QueryIcon="Find" x:Name="text" QuerySubmitted="query_Click" PlaceholderText="请输入所要查询的姓名、号码或分组" Width="500" HorizontalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <ScrollViewer>
+            <ListView x:Name="TelListView" IsItemClickEnabled="True" ItemClick="Tel_Clicked"
+                      ItemsSource="{x:Bind ViewModel.Alltel}" RenderTransformOrigin="0.547,0.453" Height="540">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="md:Tel">
+                        <Grid Height="80">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="450"/>
+                                <ColumnDefinition Width="100"/>
+                            </Grid.ColumnDefinitions>
+                            <Image x:Name="image" Grid.Column="0" Source="{x:Bind src}" Height="60" Width="60" Margin="0,3,12,7"/>
+                                <TextBlock Text="{x:Bind name}" Grid.Column="1" VerticalAlignment="Center" Foreground="#FFFFE0" FontWeight="Medium" FontSize="20" LineHeight="20" TextWrapping="Wrap" />
+                                <AppBarButton Grid.Column="2" Icon="Setting" IsCompact="True" VerticalAlignment="Center" HorizontalAlignment="Right">
+                                    <AppBarButton.Flyout>
+                                        <MenuFlyout>
+                                            <MenuFlyoutItem Text="Delete" Click="delete_click"/>
+                                        </MenuFlyout>
+                                    </AppBarButton.Flyout>
+                                </AppBarButton>
+                            </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            </ScrollViewer>
+            <Image x:Name="image" Visibility="Collapsed" />
+        </Grid>
+    </Grid>
+</Page>
