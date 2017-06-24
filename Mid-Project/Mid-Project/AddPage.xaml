@@ -1,0 +1,56 @@
+﻿<Page
+    x:Class="Mid_Project.AddPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Mid_Project"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton Grid.Column="2" Icon="Setting" IsCompact="True" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <AppBarButton.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Text="Share" Click="share_click"/>
+                    </MenuFlyout>
+                </AppBarButton.Flyout>
+            </AppBarButton>
+        </CommandBar>
+    </Page.BottomAppBar>
+
+    <Grid BorderBrush="{ThemeResource AppBarBackgroundThemeBrush}">
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/background3.jpg" Opacity="1.0" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock x:Name="textBlock" Grid.Row="0" Text="编辑号码" Foreground="#FFFFE0" Style="{StaticResource HeaderTextBlockStyle}"/>
+        <Grid Grid.Row="1">
+            <ScrollViewer>
+                <StackPanel>
+                    <Image x:Name="image" Source="Assets/userIcon2.png" Width="150" Height="150" Stretch="UniformToFill" Opacity="0.65"/>
+                    <RelativePanel Width="350">
+                        <AppBarButton x:Name="abtnOpenCamera" Icon="Camera" Label="Camera" Click="Camera_Click" Foreground="LightYellow"/>
+                        <AppBarButton x:Name="select" Icon="Pictures" Label="select" RelativePanel.AlignRightWithPanel="True" Click="selectClick" Foreground="LightYellow"/>
+                    </RelativePanel>
+                    <TextBlock Text="姓名" Foreground="LightYellow" Width="337"/>
+                    <TextBox x:Name="name" Width="350" Text=""/>
+                    <TextBlock Text="号码" Foreground="LightYellow" Width="345"/>
+                    <TextBox x:Name="num" Width="350" Text=""/>
+                    <TextBlock Text="分组" Foreground="LightYellow" Width="345"/>
+                    <TextBox x:Name="group" Width="350" HorizontalAlignment="Center" />
+                    <RelativePanel Width="350">
+                        <Button x:Name="save" Content=" 保存 " Margin="0,5,5,5" Click="save_Click"/>
+                        <Button x:Name="cancel" Content=" 取消 " RelativePanel.AlignRightWithPanel="True" Click="cancel_click" Margin="0,5,5,5"/>
+                    </RelativePanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</Page>
